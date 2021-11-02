@@ -1,0 +1,2 @@
+docker build -t devops:1 .
+docker run -dp 3000:5000 devops:1 // vnitřní port / venkovní port
