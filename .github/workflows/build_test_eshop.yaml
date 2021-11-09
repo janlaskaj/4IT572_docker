@@ -94,9 +94,9 @@ jobs:
 
     steps:
       - name: Git Checkout
-          uses: actions/checkout@v2
-          with:
-            token: ${{ secrets.SECRET_TOKEN }}
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.SECRET_TOKEN }}
           
       - name: load
         uses: actions/cache@v2
