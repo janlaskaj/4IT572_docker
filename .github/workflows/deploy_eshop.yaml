@@ -92,10 +92,15 @@ jobs:
         run: npm run test
 
   deploy:
-    # needs: [build, test]
+    needs: [build, test]
     runs-on: ubuntu-latest
 
     steps:
+      - name: Git Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.SECRET_TOKEN }}
+
       - name: set-up deployment
         run: |
           pip3 install ansible==4.0 boto boto3
@@ -104,5 +109,5 @@ jobs:
           echo {{secrets.PEM_KEY}} > ansible/devops.pem
           chmod 400 ansible/devops.pem
           ansible/devops.pem
-          ls -la ansible
+          ls -la ansible/
           ansible-playbook ansible/ec2_deploy.yml --user ec2-user --key-file ansible/devops.pem
