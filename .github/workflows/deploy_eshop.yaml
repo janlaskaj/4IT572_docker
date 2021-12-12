@@ -106,10 +106,12 @@ jobs:
           pip3 install ansible==4.0 boto boto3
           ls -la
           touch ansible/devops.pem
-          echo -----BEGIN RSA PRIVATE KEY-----MIIEpAIBAAKCAQEAvLsXQHV6vUMA7LF1rRyiDRviIpECFW7u2yB+S/nhlZSDJVVJSX2S7Wc9RFQZHNs11xc3iD+HExscOZMJ+4ANm/q9qyOyXNqER39F64gDhskCxO72Zljf1BmSFBYtNsDK66yBBi1zpykLEuusov1Tx44zoccopW5D/4QlSYK7F3iRGgpm2qOKm+yNiXJy0WLTxSKgzpPudSJT5cbtx7QlGQMv3e5WwwrC7W+E5xyUJJ2X46xHuvYRKQDugcEbpO8Wl9IXRlC7yZeu2/saLxw/aiy92+2UklfSnSjz5bvnHpb9SjArV3X319V79ToEtzeRoh4pSw2REp7yTg/xhoi0hQIDAQABAoIBAH4LUV8aVqu56Q8rAZVozw2ENsWxJLwdx2YPUGn7a95TPjcbu4NaW1s0HOXaaJ8uA8ov1kWnb9WhwHrvKbaO8gffMPbwMznyMm/xn0fLIdfNvYy6r1LxPiNQJJBHs1Ci96LoJY9zoY7dSWkMftKn72ESJoeAFDRP7RfkMGbk6YClO024ByhOks3X1Yq5fDVTxf81T43hNTfgyZVvZyyCtcRJLKY7+ti8mbOMREaiZdnVutMSNuL4Knd3SJHIc14JwcxwJmBEHFaxuWeWtSLOZABHyh4j9MTM7pDonZx7t69Ep60UBBLRR0ex2X6jEHKA72RJ/3u5kdORlFA9RfAVBYECgYEA/gMvD8BLbSbINYhO0XRCbbbK5I6bnWjRHHQX3wj3BAAdivd/Rr/kc55ZTrE8HubbomdO17oV9WpBMNGtpj58/7el3zA2PNoMrn0xOVNr9HbpDEWAjcQ8zlsvsvwGtNFOfeA0sVuQcdWEzk/VUdC9q9maJn5X1i9l3BC1fGYb7aUCgYEAvjUj8Xb9/qens6K+amugRWDeZUyX4SoKkK3kcVQevWEsDy2Ke05UIh6bAwWFJG0AZ1Xoh7m2MVRk7lCoOWTBLdHZXuQrL15bC7uam/eJuHGAkQz3AhwgJ9lgfT/dqHqQNJW6XCTXs7ThhmEvqp1tWjK/Kv0t52cVdMU8tYPWtWECgYEAl7d/HIFWi9NmMdNAgIpYQv+zH+Ctwc8hV0VgHK9WGuWWv7IkKzXiVcx2uzHRHwP0m4Po66ESDItydJ5IgctBDdu7DxvUyXPTr0THad4R1OpROCsrJYHYb8i3LMirmMSLhVOtJWHzXIqT0EaOu1dacpJ+KA++lweoZ1DzlWHHvKECgYAhlpa7TCz8LDUEFsgTWOAbgEilkMn9PARTmjGOBbHL9X3nTD55GdLnl4n+FZp2XT1GAjimxxeyTFnqb5nVUMKASd9dz2ME4V+oib96rVLHnFt8wdJYsAjJoKxWUdHdr48Jiis3nFXu6REuPrlBIr2twOpbOAxEIcL7NN1MnHRs4QKBgQCBZToiIWrDdHtu91pLjgcBBq/pS/bYBZriOPZTgQLdEkAOlHHMNSCaqWF6qkP//PHer3xLMoilEGGWd8yyOs2VKcl2XvCu0KsspwtTv63n3ESg4wDbELiumpS3t8ekYO21IApXuDbNd63hr1RFnEL5H0iWvsLyRQg55tF6XsvGEA==-----END RSA PRIVATE KEY----- > ansible/devops.pem
-          chmod 600 ansible/devops.pem
+          'echo "$SSH_KEY" > ansible/devops.pem'
+          chmod 400 ansible/devops.pem
           ls -la ansible/
           export ANSIBLE_HOST_KEY_CHECKING=False
           cat ansible/devops.pem
           ssh-keygen -l -f ansible/devops.pem
           ansible-playbook ansible/ec2_deploy.yml --user ec2-user --key-file ansible/devops.pem --verbose
+        env:
+          SSH_KEY: ${{secrets.PEM_KEY}}
