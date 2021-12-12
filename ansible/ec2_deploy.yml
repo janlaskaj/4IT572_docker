@@ -3,12 +3,6 @@
   connection: local
 
   tasks:
-    - name: Terminate instances that were previously launched
-      amazon.aws.ec2_instance:
-        state: "absent"
-        filters:
-          group-name: eshop
-
     - name: Launch EC2 instance
       amazon.aws.ec2:
         instance_type: t2.medium

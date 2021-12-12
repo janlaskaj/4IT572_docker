@@ -1,6 +1,9 @@
 name: Build and test our e-shop
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
@@ -90,3 +93,11 @@ jobs:
 
       - name: Test
         run: npm run test
+  deploy:
+    needs: ["test", "build"]
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+
+    steps:
+      - name: test
+        run: ls -la
