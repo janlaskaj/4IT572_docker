@@ -99,5 +99,18 @@ jobs:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
 
     steps:
-      - name: test
-        run: ls -la
+      - name: Git Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.SECRET_TOKEN }}
+
+      - name: set-up deployment
+        run: |
+          pip3 install ansible==4.0 boto boto3
+          touch ansible/devops.pem
+          echo "$SSH_KEY" > ansible/devops.pem
+          chmod 400 ansible/devops.pem
+          export ANSIBLE_HOST_KEY_CHECKING=False
+          ansible-playbook ansible/ec2_deploy.yml --user ec2-user --key-file ansible/devops.pem --vault-password-file vault_pass.txt
+        env:
+          SSH_KEY: ${{secrets.PEM_KEY}}
