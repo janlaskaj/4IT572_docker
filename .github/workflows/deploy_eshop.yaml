@@ -110,4 +110,5 @@ jobs:
           chmod 600 ansible/devops.pem
           ls -la ansible/
           export ANSIBLE_HOST_KEY_CHECKING=False
-          ansible-playbook ansible/ec2_deploy.yml --user ec2-user --key-file ansible/devops.pem --verbose -e 'host_key_checking=False'
+          ssh-keygen -l -f ansible/devops.pem
+          ansible-playbook ansible/ec2_deploy.yml --user ec2-user --key-file ansible/devops.pem --verbose
