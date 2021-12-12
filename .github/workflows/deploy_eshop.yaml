@@ -1,4 +1,4 @@
-name: Build and test our e-shop
+name: deploy e-shop
 
 on:
   pull_request:
