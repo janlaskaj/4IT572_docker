@@ -108,6 +108,5 @@ jobs:
           touch ansible/devops.pem
           echo {{secrets.PEM_KEY}} > ansible/devops.pem
           chmod 400 ansible/devops.pem
-          ansible/devops.pem
           ls -la ansible/
           ansible-playbook ansible/ec2_deploy.yml --user ec2-user --key-file ansible/devops.pem
