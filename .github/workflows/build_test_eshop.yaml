@@ -13,6 +13,7 @@ jobs:
   # Install all dependencies
   install:
     runs-on: ubuntu-latest
+
     steps:
       - name: Git Checkout
         uses: actions/checkout@v2
@@ -33,6 +34,7 @@ jobs:
 
       - name: Install with npm
         run: npm ci
+
   build:
     needs: Install
     runs-on: ubuntu-latest
@@ -93,6 +95,7 @@ jobs:
 
       - name: Test
         run: npm run test
+
   deploy:
     needs: ["test", "build"]
     runs-on: ubuntu-latest
@@ -111,6 +114,6 @@ jobs:
           echo "$SSH_KEY" > ansible/devops.pem
           chmod 400 ansible/devops.pem
           export ANSIBLE_HOST_KEY_CHECKING=False
-          ansible-playbook ansible/ec2_deploy.yml --user ec2-user --key-file ansible/devops.pem --vault-password-file vault_pass.txt
+          ansible-playbook ansible/ec2_deploy.yml --user ec2-user --key-file ansible/devops.pem
         env:
           SSH_KEY: ${{secrets.PEM_KEY}}
