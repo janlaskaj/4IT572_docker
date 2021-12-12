@@ -12,13 +12,14 @@
         vpc_subnet_id: subnet-0e573691193564dc6
         assign_public_ip: yes
         count: 1
+        group: eshop
         wait: true
         # aws_access_key: "{{access_key}}"
         # aws_secret_key: "{{secret_key}}"
         # security_token: "{{session_token}}"
-        aws_access_key: "ASIA3OTZS6GX2D35TXJN"
-        aws_secret_key: "LLmiGEgJEl9svi8Gd5UYJd5c0rPigMhZuMPMx9MG"
-        security_token: "FwoGZXIvYXdzEFwaDL4kJwcFiNmmfATRzSK3AbaCyKIDDkeaSvxFkQuA9BLor7rbozX+ZV71FkGdno1wyk70u4NOe1EdMlqVPMO4H3oVUueZ7oOFzbF0VXm0+gu+grK3lJd2vQZTSfkUmhDpIIcTS3zYfgMyd7kt3u65F8KzPTqLAQ/HtHdqLq2CWnM+g2TRaSQMfTbgy9tRHCbKjTNhQ5DMDboEPL6VXPd63DHrPaZ64czDKaBo3RKIyP4/YDJQKYMRqXecbhHabgOtPFA2eLx65Cik9NiNBjItrYPKJvd1VNJyucY5M9Mlu7cDeWp29KcIebhbELwkjlX+mMiVV5oJ6JrzB9o4"
+        aws_access_key: "ASIA3OTZS6GX3SJSNBOR"
+        aws_secret_key: "cGeS4Tq3LgC2HNDY9XQFLt8Co19BPwU15OCqMtyj"
+        security_token: "FwoGZXIvYXdzEF8aDKLq6qmYOZaYfjmhoyK3AVlqqM1dAL5hjxb3j7I53irdZkPJ5dDH7kNXOahIhrh2XdzI9fk827YhYYrwFcE3A5UrHn1kMU+34dLIoQR+382j1B5lLAAjg+Bhx7UOf7IkKeczaMnKsXTXU5cDKJWeCXMPFw2CxStRcMMbUJBsTFFGgFTAAk5IgjVii6SnuFFAtsaQeR4qxb1ZiaGsMf0OjkiSfIl9tkR2zWc29ot/ilw30AUb/aBSLxtVhsr04yGb8jC0R+dwcSj/ztmNBjItrMmOoQVpeQNuWm8sHBIupKyR/GRMyg1dr2kVFH3fzDBZFNDUgoFo4nDtq2kk"
       register: ec2
 
     - name: Add new instance to host group
