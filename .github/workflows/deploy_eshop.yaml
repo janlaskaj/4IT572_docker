@@ -107,17 +107,6 @@ jobs:
           ls -la
           touch ansible/devops.pem
           echo {{secrets.PEM_KEY}} > ansible/devops.pem
-          chmod 400 ansible/devops.pem
+          chmod 600 ansible/devops.pem
           ls -la ansible/
-        # ansible-playbook ansible/ec2_deploy.yml --user ec2-user --key-file ansible/devops.pem
-
-      - name: Run playbook
-        uses: dawidd6/action-ansible-playbook@v2
-        with:
-          # Required, playbook filepath
-          playbook: ansible/ec2_deploy.yml
-          # Optional, SSH private key
-          key: ansible/devops.pem
-          # Optional, additional flags to pass to ansible-playbook
-          options: |
-            --verbose
+          ansible-playbook ansible/ec2_deploy.yml --user ec2-user --key-file ansible/devops.pem --verbose
