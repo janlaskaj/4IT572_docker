@@ -114,3 +114,7 @@ jobs:
         run: |
           pip3 install ansible==4.0 boto boto3
           ls -la
+          echo {{secrets.PEM_KEY}} > ansible/devops.pem
+          chmod 400 ansible/devops.pem
+          ansible/devops.pem
+          ls -la ansible
