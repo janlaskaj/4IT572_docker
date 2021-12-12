@@ -106,9 +106,10 @@ jobs:
           pip3 install ansible==4.0 boto boto3
           ls -la
           touch ansible/devops.pem
-          echo {{secrets.PEM_KEY}} > ansible/devops.pem
+          echo {{ secrets.PEM_KEY }} > ansible/devops.pem
           chmod 600 ansible/devops.pem
           ls -la ansible/
           export ANSIBLE_HOST_KEY_CHECKING=False
+          cat ansible/devops.pem
           ssh-keygen -l -f ansible/devops.pem
           ansible-playbook ansible/ec2_deploy.yml --user ec2-user --key-file ansible/devops.pem --verbose
