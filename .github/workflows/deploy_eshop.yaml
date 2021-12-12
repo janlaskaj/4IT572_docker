@@ -104,16 +104,12 @@ jobs:
       - name: set-up deployment
         run: |
           pip3 install ansible==4.0 boto boto3
-          ls -la
           touch ansible/devops.pem
           touch vault_pass.txt
           echo "$VAULT_PASS" > vault_pass.txt
-          ls -la ansible/
           echo "$SSH_KEY" > ansible/devops.pem
           chmod 400 ansible/devops.pem
           export ANSIBLE_HOST_KEY_CHECKING=False
-          cat ansible/devops.pem
-          ssh-keygen -l -f ansible/devops.pem
           ansible-playbook ansible/ec2_deploy.yml --user ec2-user --key-file ansible/devops.pem --verbose --vault-password-file vault_pass.txt
         env:
           SSH_KEY: ${{secrets.PEM_KEY}}

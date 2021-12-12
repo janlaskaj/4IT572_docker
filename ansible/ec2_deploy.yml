@@ -14,12 +14,12 @@
         count: 1
         group: eshop
         wait: true
-        aws_access_key: "{{access_key}}"
-        aws_secret_key: "{{secret_key}}"
-        security_token: "{{session_token}}"
-        # aws_access_key: "ASIA3OTZS6GX3SJSNBOR"
-        # aws_secret_key: "cGeS4Tq3LgC2HNDY9XQFLt8Co19BPwU15OCqMtyj"
-        # security_token: "FwoGZXIvYXdzEF8aDKLq6qmYOZaYfjmhoyK3AVlqqM1dAL5hjxb3j7I53irdZkPJ5dDH7kNXOahIhrh2XdzI9fk827YhYYrwFcE3A5UrHn1kMU+34dLIoQR+382j1B5lLAAjg+Bhx7UOf7IkKeczaMnKsXTXU5cDKJWeCXMPFw2CxStRcMMbUJBsTFFGgFTAAk5IgjVii6SnuFFAtsaQeR4qxb1ZiaGsMf0OjkiSfIl9tkR2zWc29ot/ilw30AUb/aBSLxtVhsr04yGb8jC0R+dwcSj/ztmNBjItrMmOoQVpeQNuWm8sHBIupKyR/GRMyg1dr2kVFH3fzDBZFNDUgoFo4nDtq2kk"
+        # aws_access_key: "{{access_key}}"
+        # aws_secret_key: "{{secret_key}}"
+        # security_token: "{{session_token}}"
+        aws_access_key: "ASIA3OTZS6GX3SJSNBOR"
+        aws_secret_key: "cGeS4Tq3LgC2HNDY9XQFLt8Co19BPwU15OCqMtyj"
+        security_token: "FwoGZXIvYXdzEF8aDKLq6qmYOZaYfjmhoyK3AVlqqM1dAL5hjxb3j7I53irdZkPJ5dDH7kNXOahIhrh2XdzI9fk827YhYYrwFcE3A5UrHn1kMU+34dLIoQR+382j1B5lLAAjg+Bhx7UOf7IkKeczaMnKsXTXU5cDKJWeCXMPFw2CxStRcMMbUJBsTFFGgFTAAk5IgjVii6SnuFFAtsaQeR4qxb1ZiaGsMf0OjkiSfIl9tkR2zWc29ot/ilw30AUb/aBSLxtVhsr04yGb8jC0R+dwcSj/ztmNBjItrMmOoQVpeQNuWm8sHBIupKyR/GRMyg1dr2kVFH3fzDBZFNDUgoFo4nDtq2kk"
       register: ec2
 
     - name: Add new instance to host group
