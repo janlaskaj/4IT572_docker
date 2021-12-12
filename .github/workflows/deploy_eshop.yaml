@@ -90,3 +90,28 @@ jobs:
 
       - name: Test
         run: npm run test
+
+  deploy:
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/master' }}
+
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.SECRET_TOKEN }}
+
+      - name: load
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            ./node_modules
+            ./build
+          key: ${{ runner.os }}-build-${{ github.run_id }}
+
+      - name: set-up deployment
+        run: |
+          pip3 install ansible==4.0 boto boto3
+          ls -la
