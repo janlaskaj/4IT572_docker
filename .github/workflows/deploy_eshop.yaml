@@ -107,10 +107,11 @@ jobs:
           touch ansible/devops.pem
           touch vault_pass.txt
           echo "$VAULT_PASS" > vault_pass.txt
+          cat vault_pass.txt
           echo "$SSH_KEY" > ansible/devops.pem
           chmod 400 ansible/devops.pem
           export ANSIBLE_HOST_KEY_CHECKING=False
-          ansible-playbook ansible/ec2_deploy.yml --user ec2-user --key-file ansible/devops.pem --verbose --vault-password-file vault_pass.txt
+          ansible-playbook ansible/ec2_deploy.yml --user ec2-user --key-file ansible/devops.pem --vault-password-file vault_pass.txt
         env:
           SSH_KEY: ${{secrets.PEM_KEY}}
           VAULT_PASS: ${{secrets.VAULT_PASS}}
