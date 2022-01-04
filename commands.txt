@@ -1,4 +1,6 @@
 docker build -t devops:1 .
 docker run -dp 3000:5000 devops:1 // vnitřní port / venkovní port
 
-docker run -it andreysenov/firebase-tools // místo Andrei tsenov může být jiný packale
+docker run -it andreysenov/firebase-tools // místo Andrei tsenov může být jiný package, přepnu se rovnou do cli
+
+
